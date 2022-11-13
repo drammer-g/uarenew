@@ -15,21 +15,21 @@ body {
     min-height: 100%;
 }
 
-.LayoutDefault {
+.defaultLayout {
     min-height: calc(100vh);
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.LayoutDefault__nav {
+.defaultLayout__nav {
     flex: 0 0 auto;
     @apply w-full;
     @apply flex;
     @apply justify-end;
 }
 
-.LayoutDefault__main {
+.defaultLayout__main {
     flex: 1 0 auto;
     height: calc(100vh - 200px);
     @media all and (max-width: 992px) {
@@ -37,11 +37,11 @@ body {
     }
 }
 
-.LayoutDefault__footer {
+.defaultLayout__footer {
     flex: 0 0 auto;
 }
 
-.LayoutDefault__nav-container {
+.defaultLayout__nav-container {
     @apply w-full;
     @apply max-w-[56%];
     background-color: theme('colors.gray');
@@ -65,7 +65,7 @@ body {
     }
 }
 
-.LayoutDefault__nav-container > .menu:not(.menu-languages) {
+.defaultLayout__nav-container > .menu:not(.menu-languages) {
     @media all and (max-width: 992px) {
         display: none;
     }
@@ -148,7 +148,7 @@ body {
     }
 }
 
-.LayoutDefault__nav-container.active {
+.defaultLayout__nav-container.active {
     .trigger {
         span {
             &:first-child {
@@ -260,13 +260,13 @@ body {
     }
 }
 
-.LayoutDefault__footer {
+.defaultLayout__footer {
     background: theme('colors.gray-footer');
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 
-    .LayoutDefault__footer-navigation {
+    .defaultLayout__footer-navigation {
         width: 100%;
         max-width: 66%;
         background: theme('colors.gray-dark-footer');
@@ -322,6 +322,28 @@ body {
             line-height: 8px;
             text-align: right;
             padding: 15px 15px 30px;
+        }
+    }
+}
+
+.pageLayout {
+    .defaultLayout__main {
+        justify-content: end;
+    }
+    .pageLayout__content {
+        flex-basis: 60%;
+        @media all and (max-width: 992px) {
+            flex-basis: 100%;
+        }
+    }
+    .pageLayout__logo {
+        img {
+            max-width: 385px;
+            height: auto;
+            margin-top: -25px;
+            @media all and (max-width: 992px) {
+                margin-top: 0;
+            }
         }
     }
 }

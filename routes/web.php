@@ -16,11 +16,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Home', [
+        'title' => 'UaRenew'
+    ]);
 });
 
 Route::get('/project', function () {
-    return Inertia::render('Project');
+    return Inertia::render('Project', [
+        'title' => 'Project'
+    ]);
 })->name('project');
 
 Route::get('/house', function () {

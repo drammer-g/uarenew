@@ -1,11 +1,15 @@
 <template>
-    <div class="partners flex px-3">Project page</div>
+    <PageLayout>
+        <div class="project">Project page</div>
+    </PageLayout>
 </template>
 
 <script>
 
+import PageLayout from "@/Layouts/PageLayout.vue";
+
 export default {
-    name: "ProjectView",
-    components: {},
+    name: "ProjectPage",
+    components: {PageLayout},
 };
 </script>

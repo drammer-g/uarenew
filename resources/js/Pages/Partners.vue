@@ -1,11 +1,15 @@
 <template>
-    <div class="partners flex px-3">Partners page</div>
+    <PageLayout>
+        <div class="partners">Partners page</div>
+    </PageLayout>
 </template>
 
 <script>
 
+import PageLayout from "@/Layouts/PageLayout.vue";
+
 export default {
-    name: "PartnersView",
-    components: {},
+    name: "PartnersPage",
+    components: {PageLayout},
 };
 </script>

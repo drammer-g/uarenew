@@ -11,10 +11,6 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased LayoutDefault">
-        @include('includes.navigation')
-        <div class="content h-full">
             @inertia
-        </div>
-        @include('includes.footer')
     </body>
 </html>

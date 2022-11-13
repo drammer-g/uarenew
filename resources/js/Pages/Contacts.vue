@@ -1,13 +1,17 @@
 <template>
-    <div class="contacts flex px-3">Contacts page</div>
+    <PageLayout>
+        <div class="contacts">Contacts page</div>
+    </PageLayout>
 </template>
 
 <script>
 // @ is an alias to /src
 
+import PageLayout from "@/Layouts/PageLayout.vue";
 export default {
-  name: "ProjectView",
+  name: "ProjectPage",
   components: {
+      PageLayout
   },
 };
 </script>
