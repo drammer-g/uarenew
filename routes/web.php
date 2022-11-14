@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/pages/store', [PageController::class, 'store'])->name('pages.store');
     Route::get('/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
     Route::patch('/pages/{page}/edit', [PageController::class, 'update'])->name('pages.update');
+    Route::post('/images/upload', [\App\Http\Controllers\AppFileController::class, 'upload'] )->name('image.upload');
 
 });
 

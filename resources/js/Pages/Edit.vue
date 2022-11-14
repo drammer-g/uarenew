@@ -22,7 +22,8 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <form @submit.prevent="update">
                         <div class="p-6 flex bg-white border-b border-gray-200 justify-between">
-                            <span>Lang: {{ form.locale }}</span> <primary-button :disabled="form.processing">Save</primary-button>
+                            <span>Lang: {{ form.locale }}</span>
+                            <primary-button :disabled="form.processing">Save</primary-button>
                         </div>
                         <div class="p-6 bg-white border-b border-gray-200">
                             <div class="mt-4">
@@ -45,13 +46,15 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
     </AuthenticatedLayout>
 </template>
 <script>
- import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import EditorUploadAdapter from '@/EditorUploadAdapter';
 
- function MyUploadAdapterPlugin( editor ) {
-     editor.plugins.get( 'FileRepository' ).createUploadAdapter = function( loader ) {
-         console.log(loader)
-     };
- }
+function MyUploadAdapterPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
+        return new EditorUploadAdapter(loader)
+    };
+}
+
 export default {
     name: 'Edit',
     props: {
@@ -61,8 +64,7 @@ export default {
         return {
             editor: ClassicEditor,
             editorConfig: {
-                extraPlugins: [ MyUploadAdapterPlugin ],
-                // The configuration of the editor.
+                extraPlugins: [MyUploadAdapterPlugin]
             },
             form: this.$inertia.form({
                 title: this.page.title,
@@ -74,7 +76,7 @@ export default {
     },
     methods: {
         update() {
-            this.form.patch(this.route(`pages.update`, { page: this.page.id}))
+            this.form.patch(this.route(`pages.update`, {page: this.page.id}))
         }
     }
 }
