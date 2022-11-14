@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -36,13 +37,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $routes = (new Ziggy)->toArray();
+
+        $locale = Language::getLocale();
+
         return array_merge(parent::share($request), [
-            'locale' => App::currentLocale(),
+            'locale' => $locale,
             'auth' => [
                 'user' => $request->user(),
             ],
-            'ziggy' => function () use ($request) {
-                return array_merge((new Ziggy)->toArray(), [
+            'ziggy' => function () use ($routes, $request) {
+                return array_merge($routes, [
                     'location' => $request->url(),
                 ]);
             },

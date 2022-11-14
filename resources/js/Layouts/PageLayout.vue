@@ -7,7 +7,7 @@ import {Head} from "@inertiajs/inertia-vue3";
         <TopNav></TopNav>
         <main class="defaultLayout__main flex">
             <div class="pageLayout__logo">
-                <a href="/">
+                <a :href="`/${$page.props.locale}/`">
                     <img src="../../images/page_logo.webp">
                 </a>
             </div>

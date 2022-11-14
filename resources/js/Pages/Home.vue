@@ -2,7 +2,7 @@
     <DefaultLayout>
         <div class="home flex md:flex-row flex-col h-full w-full">
             <div class="home__text px-3">
-                <a href="/">
+                <a :href="`/${$page.props.locale}/`">
                     <img
                         alt="Site logo"
                         class="home__logo"
@@ -65,7 +65,7 @@
 
 <script>
 // @ is an alias to /src
-import DefaultLayout from "../layouts/DefaultLayout.vue";
+import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 
 export default {
     name: "HomePage",

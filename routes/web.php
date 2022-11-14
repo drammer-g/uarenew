@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale(), 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['web', 'setLocate']], function () {
-    Route::get('/{page:slug}', [PageController::class, 'show'])->name('pages.show');
+    Route::get('{locale}/{slug}', [PageController::class, 'show'])->name('pages.show');
 });
 
 require __DIR__ . '/auth.php';

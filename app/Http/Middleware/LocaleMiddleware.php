@@ -11,19 +11,12 @@ class LocaleMiddleware
 {
     public static function getLocale()
     {
-
-        $segmentsURI = request()->segment(1);
-
-        $locale = !empty($segmentsURI) && in_array($segmentsURI, array_keys(Language::languages()->toArray()))
-            ? $segmentsURI
-            : Language::MAIN_LANGUAGE;
-        App::setLocale($locale);
-        return $locale;
+        return Language::getLocale();
     }
 
     public function handle($request, Closure $next)
     {
-        $locale = self::getLocale();
+        $locale = Language::getLocale();
 
         $locale ? app()->setLocale($locale) : app()->setLocale(Language::MAIN_LANGUAGE);
 
