@@ -57,6 +57,7 @@ class Language extends Model
         $locale = !empty($segmentsURI) && in_array($segmentsURI, array_keys(Language::languages()->toArray()))
             ? $segmentsURI
             : Language::MAIN_LANGUAGE;
+
         App::setLocale($locale);
         return $locale;
     }
