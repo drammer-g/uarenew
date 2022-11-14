@@ -9,7 +9,10 @@
                         src="../../images/logo.webp"
                     />
                 </a>
-                <p class="home__description">
+                <p class="home__description" v-if="text.text">
+                    {{ text.text }}
+                </p>
+                <p class="home__description" v-else>
                     Project on designing residential settlements for internally
                     displaced persons and people who lost their homes due to military
                     actions in the territory of Ukraine.
@@ -69,5 +72,8 @@ export default {
     components: {
         DefaultLayout,
     },
+    props: {
+        text: [Array, Object]
+    }
 };
 </script>

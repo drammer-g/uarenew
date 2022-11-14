@@ -1,6 +1,6 @@
 <template>
     <PageLayout>
-        <div class="project">Project page</div>
+        <div class="project" v-html="$page.props.page.content"></div>
     </PageLayout>
 </template>
 

@@ -1,4 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors')
+
+console.log(colors)
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -16,17 +19,14 @@ module.exports = {
             },
         },
         colors: {
-            blue: "#1fb6ff",
-            white: "#ffffff",
-            pink: "#ff49db",
-            orange: "#ff7849",
-            green: "#13ce66",
-            "gray-dark": "#b8b8b8",
-            gray: "#d7d7d7",
-            "gray-light": "#d3dce6",
+            "custom-white": "#ffffff",
+            "custom-gray-dark": "#b8b8b8",
+            "custom-gray": "#d7d7d7",
+            "custom-gray-light": "#d3dce6",
             "text-color": "#48443e",
-            "gray-footer": "#ababab",
-            "gray-dark-footer": "#717171",
+            "footer-gray": "#ababab",
+            "footer-gray-dark": "#717171",
+            ...colors
         },
     },
 

@@ -1,13 +1,19 @@
+<script setup>
+import {Link} from '@inertiajs/inertia-vue3';
+</script>
 <template>
   <ul class="menu menu-languages">
     <li class="menu__item">
-      <a href="#" class="active menu__link">EN</a>
+      <Link :href="route('set_locale', {locale: 'en'})" class="menu__link"
+            :class="[($page.props.locale === 'en') ? 'active': null]">EN</Link>
     </li>
     <li class="menu__item">
-      <a href="#" class="menu__link">PL</a>
+        <Link :href="route('set_locale', {locale: 'pl'})" class="menu__link"
+              :class="[($page.props.locale === 'pl') ? 'active': null]">PL</Link>
     </li>
     <li class="menu__item">
-      <a href="#" class="menu__link">UA</a>
+        <Link :href="route('set_locale', {locale: 'ua'})" class="menu__link"
+              :class="[($page.props.locale === 'ua') ? 'active': null]">UA</Link>
     </li>
   </ul>
 </template>
