@@ -45,9 +45,13 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
     </AuthenticatedLayout>
 </template>
 <script>
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {useForm} from '@inertiajs/inertia-vue3'
+ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+ function MyUploadAdapterPlugin( editor ) {
+     editor.plugins.get( 'FileRepository' ).createUploadAdapter = function( loader ) {
+         console.log(loader)
+     };
+ }
 export default {
     name: 'Edit',
     props: {
@@ -57,6 +61,7 @@ export default {
         return {
             editor: ClassicEditor,
             editorConfig: {
+                extraPlugins: [ MyUploadAdapterPlugin ],
                 // The configuration of the editor.
             },
             form: this.$inertia.form({
@@ -69,7 +74,7 @@ export default {
     },
     methods: {
         update() {
-            this.form.patch(this.route(`pages.update`, { slug: this.page.slug}))
+            this.form.patch(this.route(`pages.update`, { page: this.page.id}))
         }
     }
 }

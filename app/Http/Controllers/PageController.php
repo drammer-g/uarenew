@@ -54,7 +54,7 @@ class PageController extends Controller
      * @param string $slug
      * @return Response
      */
-    public function show(string $slug)
+    public function show(string $lang, string $slug)
     {
         $page = Page::where([
             'slug' => $slug,
@@ -91,8 +91,10 @@ class PageController extends Controller
     {
 
         $page->update($request->all());
-        return Redirect::route('pages.show', [
-            'slug' => $page->slug
+        return Redirect::route('dashboard', [
+            'page' => $page,
+            'locales' => Language::languages(),
+            'pages' => Page::all()
         ])->with('success', 'Page updated.');
     }
 

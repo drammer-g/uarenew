@@ -38,7 +38,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         $routes = (new Ziggy)->toArray();
-
+//dd($routes);
         $locale = Language::getLocale();
 
         return array_merge(parent::share($request), [
