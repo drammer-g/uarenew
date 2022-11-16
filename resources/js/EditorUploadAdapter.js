@@ -44,9 +44,9 @@ class EditorUploadAdapter {
                 return reject(response && response.error ? response.error.message : genericErrorText)
             }
 
-            resolve({
-                default: response.url
-            });
+            console.log(response.urls)
+
+            resolve(response.urls);
         });
         if (xhr.upload) {
             xhr.upload.addEventListener('progress', evt => {
