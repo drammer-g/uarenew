@@ -14,7 +14,7 @@ import DangerButton from "@/Components/DangerButton.vue";
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Edit: {{ this.form.title }}
+                Edit: {{ form.title }}
             </h2>
         </template>
 
