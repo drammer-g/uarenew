@@ -30,6 +30,7 @@ class AppFileController extends Controller
             $picture->put('extension', $file->extension());
 
             $result = $this->store($picture);
+
             $img = Image::make($source->getRealPath())->fit(300, 300)->save();
             $path300 = Storage::disk('public')->putFileAs(AppFile::APP_IMAGES_PATH.'/300', $img->basePath(), $name);
             return response([

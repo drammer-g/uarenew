@@ -20,7 +20,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <form @submit="form.post(route('pages.store'))">
+                    <form @submit.prevent="form.post(route('pages.store'))">
                         <div class="p-6 bg-white border-b border-gray-200 text-right">
                             <select v-model="form.slug" class="mx-3">
                                 <option disabled value="" selected>Select slug</option>
@@ -56,14 +56,19 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {useForm} from '@inertiajs/inertia-vue3'
-
+import EditorUploadAdapter from "@/EditorUploadAdapter";
+function MyUploadAdapterPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
+        return new EditorUploadAdapter(loader)
+    };
+}
 export default {
     name: 'Edit',
     data() {
         return {
             editor: ClassicEditor,
             editorConfig: {
-                // The configuration of the editor.
+                extraPlugins: [MyUploadAdapterPlugin]
             },
             slugs: {
                 0: 'project',

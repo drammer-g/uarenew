@@ -44,8 +44,10 @@ class PageController extends Controller
      */
     public function store(PageForm $request): RedirectResponse
     {
-        Page::create($request->all());
-        return Redirect::route('dashboard')->with('success', 'Page created');
+        $page = Page::create($request->all());
+        return Redirect::route('pages.edit', [
+            'page' => $page->id
+        ])->with('success', 'Page created');
     }
 
     /**
@@ -59,7 +61,7 @@ class PageController extends Controller
         $page = Page::where([
             'slug' => $slug,
             'locale' => app()->getLocale()
-        ])->firstOrFail();
+        ])->orderBy('created_at', 'desc')->firstOrFail();
         return Inertia::render('Show', [
             'page' => $page
         ]);
@@ -102,10 +104,15 @@ class PageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Page $page
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy(Page $page)
+    public function destroy(Page $page): RedirectResponse
     {
-        //
+        $page->delete();
+        return Redirect::route('dashboard', [
+            'page' => $page,
+            'locales' => Language::languages(),
+            'pages' => Page::all()
+        ])->with('success', 'Page delete.');
     }
 }

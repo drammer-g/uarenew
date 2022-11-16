@@ -5,6 +5,7 @@ import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 </script>
 
 <template>
@@ -24,6 +25,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                         <div class="p-6 flex bg-white border-b border-gray-200 justify-between">
                             <span>Lang: {{ form.locale }}</span>
                             <primary-button :disabled="form.processing">Save</primary-button>
+
                         </div>
                         <div class="p-6 bg-white border-b border-gray-200">
                             <div class="mt-4">
@@ -40,6 +42,11 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                             <primary-button :disabled="form.processing">Save</primary-button>
                         </div>
                     </form>
+                    <div class="p-6 bg-white border-b border-gray-200 text-left">
+                        <form @submit.prevent="pageDelete">
+                            <danger-button :disabled="formDelete.processing" class="mr-2">Delete</danger-button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,12 +78,23 @@ export default {
                 content: this.page.content,
                 slug: this.page.slug,
                 locale: this.page.locale
+            }),
+            formDelete: this.$inertia.form({
+                title: this.page.title,
+                content: this.page.content,
+                slug: this.page.slug,
+                locale: this.page.locale
             })
         };
     },
     methods: {
         update() {
             this.form.patch(this.route(`pages.update`, {page: this.page.id}))
+        },
+        pageDelete() {
+            if (confirm('Delete?') === true) {
+                this.formDelete.delete(this.route(`pages.destroy`, {page: this.page.id}));
+            }
         }
     }
 }
