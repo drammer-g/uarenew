@@ -18,7 +18,9 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//dd(app()->getLocale());
+
+require __DIR__ . '/auth.php';
+
 Route::get('/', function () {
     return redirect(app()->getLocale());
 });
@@ -54,8 +56,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 Route::group(['middleware' => ['web', 'setLocate']], function () {
     Route::get('{locale}/{slug}', [PageController::class, 'show'])->name('pages.show');
 });
-
-require __DIR__ . '/auth.php';
 
 Route::get('/', [HomePageController::class, 'index'])->name('main');
 Route::get('/{locale}', [HomePageController::class, 'index'])->name('main.locale');
