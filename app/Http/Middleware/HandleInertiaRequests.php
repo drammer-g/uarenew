@@ -42,6 +42,28 @@ class HandleInertiaRequests extends Middleware
         $locale = Language::getLocale();
 
         return array_merge(parent::share($request), [
+            'menuLinks' => [
+                'project' => [
+                    'en' => 'Project',
+                    'ua' => 'Проект',
+                    'pl' => 'Project'
+                ],
+                'house' => [
+                    'en' => 'House',
+                    'ua' => 'Будинок',
+                    'pl' => 'Budynek'
+                ],
+                'partners' => [
+                    'en' => 'Partners',
+                    'ua' => 'Партнери',
+                    'pl' => 'Partnerzy'
+                ],
+                'contacts' => [
+                    'en' => 'Contacts',
+                    'ua' => 'Контакти',
+                    'pl' => 'Kontakty'
+                ]
+            ],
             'locale' => $locale,
             'auth' => [
                 'user' => $request->user(),

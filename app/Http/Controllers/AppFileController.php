@@ -35,8 +35,7 @@ class AppFileController extends Controller
             $path300 = Storage::disk('public')->putFileAs(AppFile::APP_IMAGES_PATH.'/300', $img->basePath(), $name);
             return response([
                 'urls' => [
-                    'default' => asset('storage/' . $path),
-                    '300' => asset('storage/' . $path300),
+                    'default' => asset('storage/' . $path)
                 ]
             ]);
         } catch (\Exception $exception) {

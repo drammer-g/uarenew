@@ -2,7 +2,7 @@
 import {Head} from "@inertiajs/inertia-vue3";
 </script>
 <template>
-    <Head :title="$page.props.title"/>
+    <Head :title="$page.props.page.title"/>
     <div class="pageLayout defaultLayout">
         <TopNav></TopNav>
         <main class="defaultLayout__main flex">
@@ -13,7 +13,8 @@ import {Head} from "@inertiajs/inertia-vue3";
                     </a>
                 </div>
             </div>
-            <div class="pageLayout__content px-3 py-8">
+            <div class="pageLayout__content pl-8 pr-10 pb-8">
+                <h1 class="py-6 pageLayout__title">{{ menuLinks[$page.props.page.slug][$page.props.locale] }}</h1>
                 <slot></slot>
             </div>
         </main>
@@ -38,6 +39,13 @@ export default {
                 resizeSensor: true,
                 minWidth: 992
             });
+        }
+    },
+    computed: {
+        menuLinks: {
+            get() {
+                return this.$page.props.menuLinks;
+            }
         }
     },
     mounted() {

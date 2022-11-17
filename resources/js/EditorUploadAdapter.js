@@ -23,7 +23,7 @@ class EditorUploadAdapter {
     // Initializes the XMLHttpRequest
     _initRequest() {
         const xhr = this.xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost/images/upload?location=images', true);
+        xhr.open('POST', `${window.APP_URL}/images/upload?location=images`, true);
 
         const token = document.querySelector('meta[name="csrf-token"]').content;
         xhr.setRequestHeader('X-CSRF-TOKEN', token);

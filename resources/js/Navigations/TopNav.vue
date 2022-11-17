@@ -16,6 +16,7 @@
 <script>
 import NavList from "./NavList.vue";
 import LangNav from "./LangNav.vue";
+import Headroom from "headroom.js";
 
 export default {
   name: "TopNav",
@@ -28,5 +29,18 @@ export default {
       this.$refs.mobileMenuList.classList.toggle("active");
     },
   },
+    mounted() {
+        let headerMenu = document.querySelector(".defaultLayout__nav-container");
+        let headroom = new Headroom(headerMenu, {
+            offset: 63,
+            tolerance: 5,
+            classes: {
+                initial: "headroom",
+                pinned: "headroom--pinned",
+                unpinned: "headroom--unpinned",
+            },
+        });
+        headroom.init();
+    }
 };
 </script>

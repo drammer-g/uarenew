@@ -11,6 +11,11 @@ body {
     min-height: calc(100vh);
 }
 
+html,
+body {
+    scroll-padding-top: 65px; /* set to the height of your header */
+}
+
 #app {
     min-height: 100%;
 }
@@ -24,6 +29,7 @@ body {
 
 .defaultLayout__nav {
     flex: 0 0 auto;
+    min-height: 63px;
     @apply w-full;
     @apply flex;
     @apply justify-end;
@@ -89,6 +95,9 @@ body {
             &.router-link-active {
                 background: theme('colors.custom-gray-dark');
             }
+        }
+        @media all and (max-width: 992px) {
+            background:  theme('colors.custom-gray');
         }
     }
 
@@ -330,7 +339,7 @@ body {
             letter-spacing: normal;
             line-height: 8px;
             text-align: right;
-            padding: 15px 15px 30px;
+            padding: 90px 15px 30px;
         }
     }
 }
@@ -362,17 +371,21 @@ body {
             margin-block-end: 0.67em;
             margin-inline-start: 0;
             margin-inline-end: 0;
-            font-weight: bold;
+            font-weight: 500;
+            color: theme('colors.custom-gray-dark');
         }
+
         h2 {
             display: block;
-            font-size: 1.5em;
+            font-size: 1.9em;
             margin-block-start: 0.83em;
             margin-block-end: 0.83em;
             margin-inline-start: 0;
             margin-inline-end: 0;
-            font-weight: bold;
+            font-weight: 500;
+            color: theme('colors.custom-gray-dark');
         }
+
         h3 {
             display: block;
             font-size: 1.17em;
@@ -380,21 +393,35 @@ body {
             margin-block-end: 1em;
             margin-inline-start: 0;
             margin-inline-end: 0;
-            font-weight: bold;
+            font-weight: 500;
+            color: theme('colors.custom-gray-dark');
         }
 
         @media all and (max-width: 992px) {
             flex-basis: 100%;
         }
+
+        .pageLayout__title {
+            margin-top: 0;
+            margin-bottom: 0;
+            color: theme('colors.custom-gray-dark');
+            text-align: right;
+            font-weight: 500;
+            font-size: 2.8em;
+        }
     }
 
     .pageLayout__logo {
+        padding-right: 25px;
+
         img {
             max-width: 385px;
             height: auto;
             margin-top: -25px;
+            margin-right: 25px;
             @media all and (max-width: 992px) {
                 margin-top: 0;
+                width: 100%;
             }
         }
     }
@@ -956,5 +983,44 @@ body {
     /* ckeditor5-page-break/theme/pagebreak.css */
     .ck-content .page-break::after {
         display: none;
+    }
+}
+
+/**
+ * Note: I have omitted any vendor-prefixes for clarity.
+ * Adding them is left as an exercise for the reader.
+ */
+
+
+.headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+    z-index: 1030;
+}
+
+.headroom--not-top {
+    left: auto;
+    top: 0;
+    position: fixed;
+    right: 0;
+    animation: navAnimateActive 500ms;
+}
+
+
+@keyframes navAnimateActive {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes navAnimateUnActive {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
     }
 }
