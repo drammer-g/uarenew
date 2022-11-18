@@ -13,7 +13,7 @@ import {Head} from "@inertiajs/inertia-vue3";
                     </a>
                 </div>
             </div>
-            <div class="pageLayout__content pl-8 pr-10 pb-8">
+            <div class="pageLayout__content pl-2 pr-10 pb-8">
                 <h1 class="py-6 pageLayout__title">{{ menuLinks[$page.props.page.slug][$page.props.locale] }}</h1>
                 <slot></slot>
             </div>

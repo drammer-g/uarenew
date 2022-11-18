@@ -96,8 +96,9 @@ body {
                 background: theme('colors.custom-gray-dark');
             }
         }
+
         @media all and (max-width: 992px) {
-            background:  theme('colors.custom-gray');
+            background: theme('colors.custom-gray');
         }
     }
 
@@ -361,8 +362,39 @@ body {
         }
     }
 
+    #pageLayout__sidebar {
+        flex-basis: 35%;
+
+        .pageLayout__logo {
+            width: 100%;
+            text-align: center;
+
+            img {
+                max-width: 385px;
+                height: auto;
+                margin-top: -25px;
+                margin-right: auto;
+                margin-left: auto;
+                @media all and (max-width: 992px) {
+                    margin-top: 0;
+                    width: 100%;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+
     .pageLayout__content {
-        flex-basis: 60%;
+        flex-basis: 65%;
+        padding-right: 7rem;
+
+        .content > p {
+            padding-left: 4rem;
+            @media all and (max-width: 992px) {
+                padding-left: 15px;
+            }
+        }
 
         h1 {
             display: block;
@@ -372,7 +404,8 @@ body {
             margin-inline-start: 0;
             margin-inline-end: 0;
             font-weight: 500;
-            color: theme('colors.custom-gray-dark');
+            color: theme('colors.text-color');
+            text-align: left;
         }
 
         h2 {
@@ -383,7 +416,8 @@ body {
             margin-inline-start: 0;
             margin-inline-end: 0;
             font-weight: 500;
-            color: theme('colors.custom-gray-dark');
+            color: theme('colors.text-color');
+            text-align: left;
         }
 
         h3 {
@@ -394,35 +428,24 @@ body {
             margin-inline-start: 0;
             margin-inline-end: 0;
             font-weight: 500;
-            color: theme('colors.custom-gray-dark');
+            color: theme('colors.text-color');
+            text-align: left;
         }
 
         @media all and (max-width: 992px) {
             flex-basis: 100%;
+            padding-right: 1rem;
+            padding-left: 1rem;
+            text-align: justify;
         }
 
         .pageLayout__title {
             margin-top: 0;
             margin-bottom: 0;
-            color: theme('colors.custom-gray-dark');
+            color: theme('colors.text-color');
             text-align: right;
             font-weight: 500;
             font-size: 2.8em;
-        }
-    }
-
-    .pageLayout__logo {
-        padding-right: 25px;
-
-        img {
-            max-width: 385px;
-            height: auto;
-            margin-top: -25px;
-            margin-right: 25px;
-            @media all and (max-width: 992px) {
-                margin-top: 0;
-                width: 100%;
-            }
         }
     }
 }
