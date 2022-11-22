@@ -56,7 +56,7 @@ class PageController extends Controller
      * @param string $slug
      * @return Response
      */
-    public function show(string $lang, string $slug)
+    public function show(string $lang = 'en', string $slug)
     {
         $page = Page::where([
             'slug' => $slug,
