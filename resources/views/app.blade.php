@@ -32,6 +32,6 @@
 </head>
 <body class="font-sans antialiased defaultLayout">
 @inertia
-<script src="https://crm.uarenew.com/app/web-forms/forms/vD84SeGOuWlEbN5s9G9CNJh2m5zoablkM06mCaCsGZ60blGzv7/form.js" crossorigin="anonymous"></script>
+<script src="https://crm.uarenew.com/app/web-forms/forms/n7EOJScPaC320h9VNe8K314wzMCrEMsA4p6Z113NJXz5aRYJE6/form.js" crossorigin=\"anonymous\"></script>
 </body>
 </html>
