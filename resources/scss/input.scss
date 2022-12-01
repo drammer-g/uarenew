@@ -1029,6 +1029,14 @@ body {
     animation: navAnimateActive 500ms;
 }
 
+.crm-form-content-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 655px;
+    float: right;
+}
+
 
 @keyframes navAnimateActive {
     from {
