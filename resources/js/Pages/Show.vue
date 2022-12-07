@@ -1,17 +1,18 @@
 <template>
     <PageLayout>
         <div class="content" :class="$page.props.page.slug" v-html="$page.props.page.content"></div>
-        <div v-if="showContactForm" id='web-form-n7EOJScPaC320h9VNe8K314wzMCrEMsA4p6Z113NJXz5aRYJE6'></div>
+        <WebForm v-if="showContactForm"></WebForm>
     </PageLayout>
 </template>
 
 <script>
 
 import PageLayout from "@/Layouts/PageLayout.vue";
+import WebForm from "@/Components/WebForm.vue";
 
 export default {
     name: "ProjectPage",
-    components: {PageLayout},
+    components: {PageLayout, WebForm},
     data() {
         return {
             showContactForm: false
@@ -23,12 +24,6 @@ export default {
     mounted() {
         if (this.$page.props.page.slug === 'contacts') {
             this.showContactForm = true;
-            setTimeout(() => {
-                if (typeof window.lidFormGlobalInit !== 'undefined') {
-                    window.lidFormGlobalInit();
-                }
-                ;
-            }, 100)
         }
     },
     created() {

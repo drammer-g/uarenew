@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AppFileController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\WebFormController;
 use App\Models\HomePage;
 use App\Models\Page;
 use Illuminate\Foundation\Application;
@@ -49,9 +51,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::patch('/pages/{page}/edit', [PageController::class, 'update'])->name('pages.update');
     Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
-    Route::post('/images/upload', [\App\Http\Controllers\AppFileController::class, 'imageUpload'] )->name('image.upload');
+    Route::post('/images/upload', [AppFileController::class, 'imageUpload'] )->name('image.upload');
+
+    Route::resource('webforms', WebFormController::class)->except('show');
 
 });
+
+Route::get('/webforms/{locale}', [WebFormController::class, 'show'])->name('webforms.show');
+
+Route::post('/leads', [\App\Http\Controllers\LeadController::class, 'store'])->name('leads.show');
 
 Route::group(['middleware' => ['web', 'setLocate']], function () {
     Route::get('{locale}/{slug}', [PageController::class, 'show'])->name('pages.show');
