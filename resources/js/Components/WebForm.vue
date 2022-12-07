@@ -43,13 +43,17 @@ export default {
             }
             axios.post(this.crmSource, formData);
         },
-        sendForm(formData) {
-            console.log(formData);
+        async sendForm(formData) {
+            console.log(formData.get('src'));
+            axios.post(this.crmSource, {
+                header:
+                formData
+            });
         },
         async reCapthaApiLoad() {
             let scriptApi = document.createElement('script');
             scriptApi.src = `https://www.google.com/recaptcha/api.js?render=${this.reCAPTCHA_site_key}`;
-            scriptApi.crossorigin = 'anonymous';
+            // scriptApi.setAttribute('crossorigin', 'anonymous');
             let head = document.querySelector('body');
             if (head !== null) {
                 return head.appendChild(scriptApi);
