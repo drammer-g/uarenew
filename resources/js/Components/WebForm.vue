@@ -2,11 +2,14 @@
 import InputError from "@/Components/InputError.vue";
 </script>
 <template>
-    <div class="web-form">
+    <div class="web-form relative">
         <p v-if="$page.props.flash.success" class="form flash-message"
            :class="[($page.props.flash.success) ?  'success': null]">
-            {{ $page.props.flash.success }}</p>
+            Message has ben send!</p>
         <form name="crmFormWebForm" method="post" @submit.prevent="onClick">
+            <section v-if="form.processing" class="loaderDiv">
+                <div class="imgSpinner"></div>
+            </section>
             <div class="form-group text"><label class="attribute-label required" for="">
                 Name</label>
                 <input type="text"
