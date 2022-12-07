@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LeadRequest;
+use App\Mail\LeadMail;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
@@ -37,8 +40,13 @@ class LeadController extends Controller
      */
     public function store(LeadRequest $request)
     {
-        $lead = Lead::create($request->all());
-        return back()->with('success', 'Success!');
+        try {
+            $lead = Lead::create($request->all());
+            Mail::to(env('MAIL_WEBFORM', 'office@uarenew.com'))->send(new LeadMail($lead));
+            return back()->with('success', 'Success!');
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+        }
     }
 
     /**
